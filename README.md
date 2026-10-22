@@ -201,6 +201,15 @@ Found a false positive, a missed smell, or a suggestion that does not pay off?
 with the report row and a minimal snippet. Each one becomes a regression case in `evals/`.
 See [AGENTS.md](AGENTS.md) before changing the skill.
 
+## Contributors
+
+<a href="https://github.com/ciroperf/patternwise/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ciroperf/patternwise" alt="patternwise contributors" />
+</a>
+
+Created and maintained by [@ciroperf](https://github.com/ciroperf). Every merged PR and every
+confirmed "wrong finding" report earns a spot here.
+
 ## License
 
 [MIT](LICENSE) © ciroperf
