@@ -1,0 +1,14 @@
+{
+  "name": "patternwise",
+  "owner": { "name": "ciroperf" },
+  "description": "patternwise: design-pattern and code-smell analysis and refactoring skill.",
+  "plugins": [
+    {
+      "name": "patternwise",
+      "source": "./",
+      "description": "Analyze, critique and refactor a codebase with design patterns and code smells.",
+      "category": "engineering",
+      "keywords": ["design-patterns", "refactoring", "code-smells"]
+    }
+  ]
+}

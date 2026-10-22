@@ -1,0 +1,24 @@
+{
+  "name": "patternwise",
+  "version": "0.1.0",
+  "description": "Analyze, critique and refactor an existing codebase with design patterns and code smells: smell -> refactoring -> pattern, step by step with tests.",
+  "author": { "name": "ciroperf", "url": "https://github.com/ciroperf" },
+  "homepage": "https://github.com/ciroperf/patternwise",
+  "repository": "https://github.com/ciroperf/patternwise",
+  "license": "MIT",
+  "keywords": ["design-patterns", "refactoring", "code-smells", "code-review", "clean-code", "skills"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "patternwise",
+    "shortDescription": "Find code smells, judge design patterns, refactor safely",
+    "longDescription": "Use patternwise to review a codebase's design: it detects code smells, gives each existing design pattern a verdict (sound, misapplied, name only, over-engineered), suggests refactorings only where they fix a real problem, and applies them step by step with tests after you approve a plan.",
+    "developerName": "ciroperf",
+    "category": "Developer Tools",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "defaultPrompt": [
+      "$patternwise analyze",
+      "$patternwise suggest src/"
+    ],
+    "websiteURL": "https://github.com/ciroperf/patternwise"
+  }
+}

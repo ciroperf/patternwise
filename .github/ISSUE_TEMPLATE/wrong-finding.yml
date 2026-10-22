@@ -1,0 +1,37 @@
+name: Wrong or missed finding
+description: The skill flagged something that is fine, missed a real problem, or proposed a pattern that does not pay off.
+labels: ["finding-quality"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What went wrong
+      options:
+        - False positive (smell or verdict that is not real)
+        - Missed problem
+        - Over-engineered suggestion
+        - Edited without approval / broke behavior
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: agent
+    attributes:
+      label: Agent and model
+      placeholder: Claude Code (Opus), Codex (gpt-...), Cursor...
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Prompt you used
+    validations:
+      required: true
+  - type: textarea
+    id: finding
+    attributes:
+      label: The finding (paste the report row) and why it is wrong
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: Minimal code that reproduces it (or a public repo + commit)

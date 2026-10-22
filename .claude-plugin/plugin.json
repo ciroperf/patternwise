@@ -1,0 +1,23 @@
+{
+  "name": "patternwise",
+  "version": "0.1.0",
+  "description": "Analyze, critique and refactor an existing codebase with design patterns and code smells: smell -> refactoring -> pattern, step by step with tests.",
+  "author": {
+    "name": "ciroperf",
+    "url": "https://github.com/ciroperf"
+  },
+  "repository": "https://github.com/ciroperf/patternwise",
+  "license": "MIT",
+  "keywords": [
+    "design-patterns",
+    "refactoring",
+    "code-smells",
+    "code-review",
+    "clean-code",
+    "skills"
+  ],
+  "skills": [
+    "./skills/patternwise"
+  ],
+  "homepage": "https://github.com/ciroperf/patternwise"
+}
