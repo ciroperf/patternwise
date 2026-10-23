@@ -52,7 +52,12 @@ Compare with `expected/<case>.md`. Checklist:
 - [ ] Each pattern gets exactly one verdict: sound / misapplied / name only / over-engineered / uncertain.
 - [ ] Fix mode presents a plan and **waits for approval** before editing.
 - [ ] Tests run before and after each step; `py-legacy-docs` gets characterization tests first.
-- [ ] Behavior unchanged (`git diff` + green tests); nothing edited outside scope.
+- [ ] New tests run with the plain command (`python -m unittest`, `npm test`) and the count only goes up.
+- [ ] Behavior unchanged (`git diff` + green tests); nothing edited outside scope (new tests are allowed).
+- [ ] Bugs are reported, not fixed inside the plan (`py-orders`: the `WELCOME10` negative tax).
+- [ ] "Approved" with no plan shown (e.g. a fresh session) gets the plan back, not edits.
+- [ ] If the tests cannot run, no edits. Codex's Windows sandbox has no Python, so for Codex
+      the Python cases check this refusal; use `js-notify` to test its Fix steps.
 
 On real repositories (no key), check that every citation and identifier exists:
 

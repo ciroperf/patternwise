@@ -173,7 +173,7 @@ flags any `file:line` or identifier the agent made up.
 | Run | Claude Code | Codex |
 |---|---|---|
 | `py-orders` vs answer key | 2/2 pattern verdicts · **8/8 smells** · found and reproduced a real pricing bug | 2/2 pattern verdicts · 6/8 smells |
-| Fix mode (`py-orders`, `js-notify`, `py-legacy-docs`) | Plan first, approval, tests green after every step, characterization tests first when there were none | Plan first, approval, tests green after every step, outputs unchanged |
+| Fix mode, 3 eval rounds | `py-orders`, `py-legacy-docs`, `js-notify`: plan first, edits only after approval, tests up (6→16, 0→22) and green after every step, outputs unchanged, bug reported instead of "fixed" | `js-notify`: plan first, 3 steps, 5/5 green after each. When its sandbox could not run the tests, it refused to edit, every time |
 | axios `lib/`, httpie, Django `db/backends` | 104 citations, 1 off-by-one line range, 0 invented files | 64 citations, **0 invented** |
 | Real issues surfaced | httpie: shared mutable `env=Environment()` default in 5 places | httpie: plugin registry re-registers on every load |
 
