@@ -56,6 +56,9 @@ an approved plan.
   sets it. If there is none, use what the user pointed at (open file, mentioned path); otherwise ask once.
 - Never edit anything outside the perimeter. If a fix needs changes outside it (e.g. callers
   in another module), list them in the plan as "outside scope" and ask.
+- Tests are the exception: you may add new test files or new test cases for code in the
+  perimeter, wherever the project keeps its tests. Do not change or delete existing tests
+  unless a plan step says so (e.g. a test that imports a symbol the user approved removing).
 - Exclude generated code, vendored dependencies, build output, migrations and lockfiles from
   analysis unless explicitly requested.
 
@@ -127,9 +130,11 @@ Severity rubric:
 | **Medium** | Real maintenance cost, localized; fix when touching the area. |
 | **Low** | Cosmetic or theoretical; mention briefly, often "leave as is". |
 
-Weigh severity by churn: a smelly file nobody touched in two years is usually Low. A
+Weigh severity by churn: a smelly file nobody touched in two years is usually Low. Churn only
+counts when there is history to read: with a single commit, a squashed import or a shallow
+clone, say so and judge by structure alone (never downgrade for "low churn" then). A
 conditional on the same type code repeated in 3+ places of the same class or module is High
-by default: every new type is a shotgun edit. The same vocabulary translated once per
+by default, whatever the file size: every new type is a shotgun edit. The same vocabulary translated once per
 polymorphic implementation (one branch set per backend/adapter) is not that smell.
 
 ### 4. Report
@@ -184,11 +189,16 @@ Rules for the plan:
 - Order: safety net first (characterization tests), then low-risk local moves (Extract
   Method, Rename, Extract Variable), then moves between classes, then hierarchy/pattern
   changes. Each step must leave the code compiling and tests green.
-- Prefer many small steps over one big rewrite. Mark any step that is not a pure refactoring
-  (behavior change, bug fix) as such and keep it separate.
+- Prefer many small steps over one big rewrite.
+- Bug fixes and other behavior changes are not refactoring steps: list them under "Bugs" in
+  the report and leave them out of the plan. Add one only if the user asks for that fix by
+  name; then it is its own step, marked "behavior change", with a test that fails first.
 - If there are no tests, say so and propose characterization tests before every Medium/High
   risk step (see `references/refactoring-safety.md`).
 - The user may approve all, some, or reorder. Do only what was approved.
+- Approval counts only for a plan the user has seen in this conversation. If you are told to
+  "go ahead" or "apply the plan" and no plan of yours is visible above (new session, lost
+  context), present the plan and wait again. Never write a plan and apply it in one turn.
 
 ### 6. Apply (Fix mode)
 
@@ -196,8 +206,10 @@ For each approved step:
 1. Open the technique's entry in `references/refactorings/<group>.md` and follow its mechanics.
 2. Make the smallest change that completes the step; preserve observable behavior
    (outputs, side effects, exceptions, public signatures unless the step says otherwise).
-3. Run build/type-check/tests (the commands found in step 1). If they fail, fix forward only
-   if the cause is obvious and inside the step; otherwise revert the step and report.
+3. Run build/type-check/tests with the project's test command (found in step 1, or fixed in
+   the characterization step). Report the test count: it must not go down. If they fail, fix
+   forward only if the cause is obvious and inside the step; otherwise revert the step and
+   report.
 4. Briefly log: step, files, result of verification.
 
 Do not combine steps, do not "also tidy" unrelated code, do not reformat whole files, do not
