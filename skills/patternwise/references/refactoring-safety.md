@@ -30,9 +30,10 @@ Say so in the report and the plan. Before any Medium/High-risk step propose
 - Use the project's existing test framework and layout; do not add a new framework without
   approval.
 - The new tests must run with the project's test command, not only when called by name. If
-  the project has no command yet, use the framework's default discovery (e.g. `python -m
-  unittest discover` needs a `tests/__init__.py`; pytest needs `test_*.py` names), state the
-  command in the plan, and use it for every later step.
+  the project has no command yet, make the tests run with the framework's zero-argument
+  default, the command a newcomer would try without reading your notes: `python -m unittest`
+  (needs `tests/__init__.py` and `test_*.py` names), `pytest`, `npm test`, `go test ./...`.
+  State that command in the plan and use it for every later step.
 - Prove it: run the command before and after adding the tests and report both test counts.
   If the count did not go up, the tests are not collected; fix that before refactoring.
 - Seams: if the code is untestable (static calls, `new` of infrastructure, global state),
