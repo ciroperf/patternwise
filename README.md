@@ -1,37 +1,46 @@
 <div align="center">
 
-# patternwise
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
+  <img alt="patternwise: design patterns and refactoring, only where they pay off" src="assets/banner-light.svg" width="100%">
+</picture>
 
-**Design patterns and refactoring, applied like a senior engineer would: only where they pay off.**
+<br/>
 
-An agent skill for Claude Code, Codex and any agent that reads `SKILL.md`. It finds code smells, judges the
-design patterns already in your code, and refactors in small steps with tests, after you
-approve the plan.
+**An agent skill that reviews your design like a senior engineer: it finds code smells, judges the
+patterns already in your code, and refactors in small tested steps, only after you approve the plan.**
 
-[![Agent Skill](https://img.shields.io/badge/Agent%20Skill-SKILL.md-8A2BE2)](skills/patternwise/SKILL.md)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-ready-D97757)](#install)
-[![Codex](https://img.shields.io/badge/Codex-ready-111111)](#install)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue)](CHANGELOG.md)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-16a34a.svg)](LICENSE)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-SKILL.md-7c3aed.svg)](skills/patternwise/SKILL.md)
+[![Release](https://img.shields.io/github/v/release/ciroperf/patternwise?color=blue)](https://github.com/ciroperf/patternwise/releases/latest)
 [![CI](https://github.com/ciroperf/patternwise/actions/workflows/ci.yml/badge.svg)](https://github.com/ciroperf/patternwise/actions/workflows/ci.yml)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-supported-D97757?logo=claude&logoColor=white)](#install)
+[![Codex](https://img.shields.io/badge/Codex-supported-111111)](#install)
+[![Any SKILL.md agent](https://img.shields.io/badge/Cursor%20%C2%B7%20Copilot%20%C2%B7%20Antigravity-via%20skills.sh-555555)](#install)
 
 ```bash
 npx skills@latest add ciroperf/patternwise
 ```
 
+[Why](#why) · [What you get](#what-you-get) · [Commands](#three-commands) · [Install](#install) · [How it works](#how-it-works) · [Tested](#tested-not-vibed) · [Contributing](#contributing)
+
 </div>
 
 ---
 
-## The problem
+## Why
 
-Ask an AI agent to "refactor with design patterns" and you usually get one of two things:
+Ask a coding agent to "refactor with design patterns" and you usually get one of two things:
 
 - **Pattern cosplay**: an `AbstractNotifierFactory`, an `INotifier` with one implementation, an
   event bus between two functions. More files, same problems.
 - **Vague advice**: "consider applying SOLID principles", with no line numbers and no plan.
 
-patternwise makes the agent reason the way the refactoring literature does:
+patternwise makes the agent reason the way the refactoring literature does, from a concrete
+symptom to the smallest treatment that fixes it:
 
 ```
  code smell  ──▶  refactoring technique  ──▶  design pattern (only if it fixes a problem you have today)
@@ -41,8 +50,18 @@ patternwise makes the agent reason the way the refactoring literature does:
 
 ## What you get
 
-**It judges existing patterns instead of just naming them.** Every occurrence gets exactly one
-verdict:
+- ⚖️ **A verdict on every pattern, not just a name.** Sound, misapplied, name only,
+  over-engineered or uncertain, with the evidence.
+- 📍 **Evidence, not opinion.** Every finding has `file:line`, a severity weighted by git churn,
+  the change it makes hard, and a named technique from a catalog of 66 refactorings.
+- ✂️ **It deletes as readily as it adds.** Over-engineering is reported as seriously as smells:
+  Remove Middle Man and Collapse Hierarchy are first-class remedies.
+- 🛡️ **It never edits without asking.** Fix mode shows a numbered plan, waits for your approval,
+  runs your tests after every step, and writes characterization tests first when there are none.
+- 🐛 **Bugs are reported, not silently "fixed".** A refactoring keeps behavior identical; a bug
+  it finds goes in its own list.
+- 🌍 **Idiomatic in your language.** A Strategy in Python or JS is often just a function, a
+  Singleton is often a module. It follows your codebase's style, not a textbook's.
 
 | Verdict | Meaning |
 |---|---|
@@ -51,16 +70,6 @@ verdict:
 | 🏷️ **Name only** | Called `*Factory` / `*Manager` / `*Proxy` without the structure |
 | 🧱 **Over-engineered** | Machinery with one variant: interface with one impl, factory for one product |
 | ❓ **Uncertain** | Says so, and says what evidence would settle it |
-
-**Every finding is evidence, not opinion**: `file:line`, severity weighted by git churn, the
-concrete change it makes hard, and a named technique from a catalog of 66 refactorings.
-
-**It deletes as readily as it adds.** Over-engineering is reported with the same seriousness as
-smells. Remove Middle Man and Collapse Hierarchy are first-class remedies.
-
-**It never edits without asking.** Fix mode shows a numbered plan, waits for approval, runs
-your tests after every step, writes characterization tests first when there are none, and keeps
-behavior identical.
 
 ### Example (real output, trimmed)
 
@@ -92,13 +101,14 @@ The path is optional, and anything after it is passed along as notes
 (`/patternwise fix src/ keep the public API`). No mode means `analyze`. In Codex you can also
 pick it from the `/skills` menu. Italian aliases work too: `analizza`, `suggerisci`, `sistema`.
 
-Why explicit? A refactoring workflow should start when you ask for it, not because a prompt
+**Why explicit?** A refactoring workflow should start when you ask for it, not because a prompt
 happened to say "clean up". In our tests implicit triggering was the least reliable part:
 another installed skill could win the match and edit without a plan.
 
 ## Install
 
-### Any agent (Claude Code, Codex, Cursor, Copilot, Gemini CLI and more, via [skills.sh](https://skills.sh))
+<details open>
+<summary><strong>Any agent</strong> (Claude Code, Codex, Cursor, Copilot, Antigravity and more, via <a href="https://skills.sh">skills.sh</a>)</summary>
 
 ```bash
 npx skills@latest add ciroperf/patternwise
@@ -114,14 +124,20 @@ npx skills@latest add ciroperf/patternwise -a claude-code -g
 npx skills@latest add ciroperf/patternwise -a codex -g
 ```
 
-### Claude Code plugin (auto-updates)
+</details>
+
+<details>
+<summary><strong>Claude Code plugin</strong> (auto-updates)</summary>
 
 ```
 /plugin marketplace add ciroperf/patternwise
 /plugin install patternwise@patternwise
 ```
 
-### Codex plugin
+</details>
+
+<details>
+<summary><strong>Codex plugin</strong></summary>
 
 ```bash
 codex plugin marketplace add ciroperf/patternwise
@@ -131,12 +147,19 @@ codex plugin marketplace add ciroperf/patternwise
 codex plugin add patternwise@patternwise
 ```
 
-### Manual
+</details>
 
-Copy [`skills/patternwise/`](skills/patternwise) into `~/.claude/skills/` (Claude Code) or
-`~/.agents/skills/` (Codex), or into a single repo's `.claude/skills/`.
+<details>
+<summary><strong>Manual</strong></summary>
 
-Optional: Python 3 for the hotspot scanner. Without it the skill falls back to git and ripgrep.
+Download `patternwise-vX.Y.Z.zip` from the [latest release](https://github.com/ciroperf/patternwise/releases/latest)
+(or clone the repo) and copy [`skills/patternwise/`](skills/patternwise) into `~/.claude/skills/`
+(Claude Code), `~/.agents/skills/` (Codex), or a single repo's `.claude/skills/`.
+
+</details>
+
+Optional: Python 3 for the hotspot scanner. Without it the skill falls back to git and ripgrep,
+or plain bash/PowerShell.
 
 ## How it works
 
@@ -154,16 +177,17 @@ flowchart LR
 Under the hood:
 
 - **[`SKILL.md`](skills/patternwise/SKILL.md)**: the workflow, severity rubric, report template
-  and safety rules, about 200 lines.
-- **[`references/`](skills/patternwise/references)**: loaded on demand, never all at once.
+  and safety rules, under 300 lines.
+- **[`references/`](skills/patternwise/references)**: loaded on demand, one file per finding,
+  never all at once.
   - 23 code smells, each with treatments and when to ignore it.
   - Smell → technique → pattern chains.
   - 66 refactoring techniques with their mechanics.
   - All 22 GoF patterns with recognition cues, misuse signs and per-language idioms.
 - **[`scripts/hotspots.py`](skills/patternwise/scripts/hotspots.py)**: a zero-dependency
-  scanner that surfaces the largest and most-changed files, dense conditionals, and the same
-  attribute compared against many literals across files, which is the main lead for
-  Switch Statements. It takes about 10 s on Django's 124k lines.
+  scanner for the largest and most-changed files, dense conditionals, and the same attribute
+  compared against many literals across files (the main lead for Switch Statements). About
+  10 s on Django's 124k lines.
 
 ## Tested, not vibed
 
@@ -177,29 +201,23 @@ flags any `file:line` or identifier the agent made up.
 | axios `lib/`, httpie, Django `db/backends` | 104 citations, 1 off-by-one line range, 0 invented files | 64 citations, **0 invented** |
 | Real issues surfaced | httpie: shared mutable `env=Environment()` default in 5 places | httpie: plugin registry re-registers on every load |
 
-Every finding quoted above was checked by hand against the code.
-
-Every run on real repositories surfaced something that went back into the skill: Python- and
-ripgrep-free fallbacks for sandboxed agents, test-noise filtering in the scanner, one verdict
-per pattern, and reports that stay proportional to the code.
+Every finding quoted above was checked by hand against the code. Every run on a real
+repository fed something back into the skill: fallbacks for sandboxes without Python or
+ripgrep, test-noise filtering in the scanner, one verdict per pattern, and reports that stay
+proportional to the code.
 
 ## Principles
 
 **YAGNI / KISS** · **fit the codebase's existing style** · **evidence over labels** ·
 **smallest effective treatment** · **behavior is sacred**
 
-## Credits
-
-The knowledge base is distilled and rewritten from Alexander Shvets' *Dive Into Design Patterns*
-and *Dive Into Refactoring* and the [refactoring.guru](https://refactoring.guru) taxonomy. No
-text from those works is reproduced. Buy the books, they are excellent.
-
 ## Contributing
 
 Found a false positive, a missed smell, or a suggestion that does not pay off?
 [Open a "wrong finding" issue](https://github.com/ciroperf/patternwise/issues/new?template=wrong-finding.yml)
-with the report row and a minimal snippet. Each one becomes a regression case in `evals/`.
-See [AGENTS.md](AGENTS.md) before changing the skill.
+with the report row and a minimal snippet: each confirmed one becomes a regression case in
+`evals/`. Knowledge-base fixes, new language idioms and eval cases are all welcome. See
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Contributors
 
@@ -209,6 +227,12 @@ See [AGENTS.md](AGENTS.md) before changing the skill.
 
 Created and maintained by [@ciroperf](https://github.com/ciroperf). Every merged PR and every
 confirmed "wrong finding" report earns a spot here.
+
+## Credits
+
+The knowledge base is distilled and rewritten from Alexander Shvets' *Dive Into Design Patterns*
+and *Dive Into Refactoring* and the [refactoring.guru](https://refactoring.guru) taxonomy. No
+text from those works is reproduced. Buy the books, they are excellent.
 
 ## License
 

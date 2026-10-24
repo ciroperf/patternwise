@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.1.0
+## Unreleased
+
+## 0.1.0 - 2026-10-24
 
 First public release.
 
@@ -22,6 +24,7 @@ First public release.
 - `scripts/hotspots.py`: churn × size, conditional density, repeated type-code comparisons,
   pattern-ish names; skips tests and vendored code; `--selftest`.
 - Evals: three cases with answer keys and `evals/check_refs.py` (flags invented citations).
+- `CONTRIBUTING.md` and a release workflow that publishes `patternwise-vX.Y.Z.zip`.
 - Hardened on real codebases (axios, httpie, Django) with Claude Code and Codex:
   - bash/PowerShell fallbacks for sandboxes without Python or ripgrep;
   - `git safe.directory` for sandboxes running as another user;

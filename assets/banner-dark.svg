@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-label="patternwise: design patterns and refactoring, only where they pay off">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#161b22"/></linearGradient>
+  <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#ea580c"/></linearGradient></defs>
+  <rect width="1280" height="360" rx="24" fill="url(#bg)"/>
+  <text x="80" y="150" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="76" font-weight="700" fill="#e6edf3">pattern<tspan fill="#a78bfa">wise</tspan></text>
+  <text x="82" y="200" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="24" fill="#8b949e">Design patterns and refactoring, only where they pay off.</text>
+  <rect x="80" y="236" width="620" height="44" rx="10" fill="#1f2430"/>
+  <circle cx="106" cy="258" r="6" fill="#16a34a"/><text x="120" y="264" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="16" fill="#e6edf3">sound</text>
+  <circle cx="202" cy="258" r="6" fill="#d97706"/><text x="216" y="264" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="16" fill="#e6edf3">misapplied</text>
+  <circle cx="347" cy="258" r="6" fill="#64748b"/><text x="361" y="264" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="16" fill="#e6edf3">name only</text>
+  <circle cx="482" cy="258" r="6" fill="#dc2626"/><text x="496" y="264" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="16" fill="#e6edf3">over-engineered</text>
+  <rect x="800" y="52" width="400" height="64" rx="12" fill="#1f2430" stroke="#30363d" stroke-width="1.5"/>
+  <text x="820" y="76" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#a78bfa">smell</text>
+  <text x="820" y="100" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" fill="#e6edf3">switch on customer_type, 3 places</text>
+  <path d="M1000 120 V136" stroke="#8b949e" stroke-width="2"/><path d="M994 132 L1000 140 L1006 132" fill="none" stroke="#8b949e" stroke-width="2"/>
+  <rect x="800" y="144" width="400" height="64" rx="12" fill="#1f2430" stroke="#30363d" stroke-width="1.5"/>
+  <text x="820" y="168" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#a78bfa">technique</text>
+  <text x="820" y="192" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" fill="#e6edf3">Replace Conditional with Polymorphism</text>
+  <path d="M1000 212 V228" stroke="#8b949e" stroke-width="2"/><path d="M994 224 L1000 232 L1006 224" fill="none" stroke="#8b949e" stroke-width="2"/>
+  <rect x="800" y="236" width="400" height="64" rx="12" fill="#1f2430" stroke="url(#g)" stroke-width="2.5"/>
+  <text x="820" y="260" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" fill="#ea580c">pattern?</text>
+  <text x="820" y="284" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" fill="#e6edf3">Strategy, only if it pays off today</text>
+</svg>
